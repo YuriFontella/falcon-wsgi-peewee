@@ -24,3 +24,7 @@ class UserResource:
 
         except Exception as e:
             raise Exception(e)
+        
+    def on_get_user(self, req, resp, id):
+        user = Users.select().where(Users.id == id).dicts()
+        resp.media = user.get()
