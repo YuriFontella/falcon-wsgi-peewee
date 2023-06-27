@@ -3,12 +3,9 @@ import falcon
 from src.middlewares.auth import AuthMiddleware
 from src.middlewares.pool import PoolMiddleware
 
-from routes import users, suffix
+from errors.storage import StorageError
 
-class StorageError:
-    @staticmethod
-    def handle(e, req, resp, params):
-        raise falcon.HTTPInternalServerError(description=str(e))
+from routes import users, suffix
 
 app = falcon.App(middleware=[ PoolMiddleware(), AuthMiddleware()])
 
