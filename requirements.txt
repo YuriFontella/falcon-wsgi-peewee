@@ -1,2 +1,3 @@
 falcon
 peewee
+psycopg2-binary
