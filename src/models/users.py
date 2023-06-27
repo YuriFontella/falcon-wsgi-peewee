@@ -1,6 +1,6 @@
 import peewee
 
-from pool import db
+from config.db.pool import db
 
 class Users(peewee.Model):
     name = peewee.CharField()

@@ -1,8 +1,8 @@
 import peewee
 
-from model import Users
+from src.models.users import Users
 
-from pool import db
+from config.db.pool import db
 
 try:
     Users.create_table()
