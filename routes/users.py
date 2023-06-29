@@ -1,6 +1,6 @@
-from src.controllers.user import UserResource
+from src.controllers.users import UsersResource
 
-user = UserResource()
+user = UsersResource()
 
 def routes(app):
     app.add_route('/users', user)

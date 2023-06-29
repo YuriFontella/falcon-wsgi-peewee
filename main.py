@@ -5,7 +5,7 @@ from src.middlewares.pool import PoolMiddleware
 
 from errors.storage import StorageError
 
-from routes import users, suffix
+from routes import suffix, users
 
 app = falcon.App(middleware=[PoolMiddleware(), AuthMiddleware()])
 
