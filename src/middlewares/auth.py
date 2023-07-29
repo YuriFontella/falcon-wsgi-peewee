@@ -1,7 +1,7 @@
 import falcon
 
 class AuthMiddleware:
-    def process_request(self, req, resp):
+    async def process_request(self, req, resp):
         token = req.get_header('x-access-token')
         print(token)
 
