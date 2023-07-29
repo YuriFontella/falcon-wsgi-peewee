@@ -1,15 +1,13 @@
-import falcon
+import os, uvicorn
 
-from src.middlewares.auth import AuthMiddleware
-from src.middlewares.pool import PoolMiddleware
+app = 'server.www:app'
+app_dir = os.path.abspath(os.path.dirname(__file__))
+host = '0.0.0.0'
+port = 8000
+workers = 4
+log_level = 'debug'
 
-from errors.storage import StorageError
+reload = True
 
-from routes import suffix, users
-
-app = falcon.App(middleware=[PoolMiddleware(), AuthMiddleware()])
-
-users.routes(app)
-suffix.routes(app)
-
-app.add_error_handler(Exception, StorageError.handle)
+if __name__ == "__main__":
+    uvicorn.run(app, host=host, port=port, log_level=log_level, workers=workers, reload=False)
