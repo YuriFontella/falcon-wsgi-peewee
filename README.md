@@ -3,5 +3,5 @@ pip install -r requirements.txt
 ```
 
 ```bash
-python main.py
+python main.py --reload=True --env=development
 ```
