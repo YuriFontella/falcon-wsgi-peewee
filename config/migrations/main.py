@@ -3,5 +3,5 @@ from src.models.users import Users
 from config.db.pool import db
 
 def create_tables():
-   with db:
+    with db:
         db.create_tables([Users])
