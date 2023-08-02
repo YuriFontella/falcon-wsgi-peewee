@@ -1,5 +1,5 @@
-from playhouse.pool import PooledPostgresqlDatabase
 import configparser, os
+from playhouse.pool import PooledPostgresqlDatabase
 
 config = configparser.ConfigParser()
 config.read('config.ini')

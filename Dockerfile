@@ -8,9 +8,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN cp /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 RUN echo "America/Sao_Paulo" > /etc/timezone
 
-COPY . .
+COPY . 
 
-ENV SSL_CERT=''
-ENV SSL_KEY=''
+ENV GUNICORN_CMD_ARGS="--env ENV=production"
 
-CMD ["python3", "main.py", "--env=production"]
+CMD ["gunicorn", "--keyfile", "", "--certfile", "", "-c", "gunicorn.py"]
