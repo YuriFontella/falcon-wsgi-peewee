@@ -5,7 +5,7 @@ from src.hooks.secure import secure
 
 @falcon.before(secure)
 class UsersResource:
-    async def on_get(self, req, resp):
+    def on_get(self, req, resp):
         print(req.get_param('id', False))
         print(req.params)
 
@@ -14,10 +14,10 @@ class UsersResource:
 
         resp.media = users
     
-    async def on_post(self, req, resp):
+    def on_post(self, req, resp):
         try:
-            print(await req.media)
-            user = Users.insert(await req.media)
+            print(req.media)
+            user = Users.insert(req.media)
 
         except Exception as e:
             raise Exception(e)
@@ -28,6 +28,6 @@ class UsersResource:
             resp.status = falcon.HTTP_201
             resp.text = json.dumps(user)
         
-    async def on_get_user(self, req, resp, id):
+    def on_get_user(self, req, resp, id):
         user = Users.select().where(Users.id == id).dicts()
         resp.media = user.get()
