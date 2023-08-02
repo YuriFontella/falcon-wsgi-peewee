@@ -3,5 +3,5 @@ pip install -r requirements.txt
 ```
 
 ```bash
-gunicorn -c gunicorn.py
+python main.py --reload=True --env=development
 ```

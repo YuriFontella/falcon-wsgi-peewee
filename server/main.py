@@ -1,15 +1,24 @@
-import falcon
+import os, uvicorn, multiprocessing, argparse
 
-from src.middlewares.auth import AuthMiddleware
-from src.middlewares.pool import PoolMiddleware
+app = 'server.www:app'
+app_dir = os.path.dirname(os.path.abspath(__file__))
+host = '0.0.0.0'
+port = 8000
+workers = (2 * multiprocessing.cpu_count()) + 1
 
-from errors.storage import StorageError
+ssl_ca_certs = os.environ.get('SSL_CA')
+ssl_keyfile = os.environ.get('SSL_KEY')
 
-from routes import suffix, users
+parser = argparse.ArgumentParser()
 
-app = falcon.App(middleware=[PoolMiddleware(), AuthMiddleware()])
+parser.add_argument('--reload', default=False)
+parser.add_argument('--log-level', default='info')
 
-users.routes(app)
-suffix.routes(app)
+parser.add_argument('--env', required=True)
 
-app.add_error_handler(Exception, StorageError.handle)
+args = parser.parse_args()
+
+os.environ['ENV'] = args.env
+
+if __name__ == "__main__":
+    uvicorn.run(app, host=host, port=port, log_level=args.log_level, workers=workers, reload=args.reload, ssl_ca_certs=ssl_ca_certs, ssl_keyfile=ssl_keyfile)
