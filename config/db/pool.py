@@ -1,8 +1,7 @@
 import configparser, os
 from playhouse.pool import PooledPostgresqlDatabase
 
-config = configparser.ConfigParser()
-config.read('config.ini')
+config = configparser.ConfigParser().read('config.ini')
 
 env = os.environ.get('ENV', 'development')
 
