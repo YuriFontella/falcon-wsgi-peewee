@@ -10,6 +10,6 @@ RUN echo "America/Sao_Paulo" > /etc/timezone
 
 COPY . 
 
-ENV GUNICORN_CMD_ARGS="--env ENV=production"
+ENV ENV="production"
 
 CMD ["gunicorn", "--keyfile", "", "--certfile", "", "-c", "gunicorn.py"]

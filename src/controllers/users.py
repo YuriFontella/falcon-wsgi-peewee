@@ -9,10 +9,10 @@ class UsersResource:
         print(req.get_param('id', False))
         print(req.params)
 
-        users = Users.select(Users.name).limit(1).dicts()
+        users = Users.select(Users.name).limit(2000000).dicts()
         users = [user for user in users.iterator()]
 
-        resp.media = users
+        resp.media = len(users)
     
     def on_post(self, req, resp):
         try:
