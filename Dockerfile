@@ -8,7 +8,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 RUN cp /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
 RUN echo "America/Sao_Paulo" > /etc/timezone
 
-COPY . 
+COPY . .
 
 ENV ENV="production"
 
