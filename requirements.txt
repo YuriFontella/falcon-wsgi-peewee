@@ -1,4 +1,4 @@
 falcon
 peewee
-uvicorn
+gunicorn
 psycopg2-binary
