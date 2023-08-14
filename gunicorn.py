@@ -4,7 +4,7 @@ from config.migrations.main import create_tables
 
 bind='0.0.0.0:8000'
 workers=int(multiprocessing.cpu_count() / 2) + 1
-wsgi_app='src.app:app'
+wsgi_app='src.main:app'
 loglevel='info'
 chdir=os.path.dirname(os.path.abspath(__file__))
 timeout=300
